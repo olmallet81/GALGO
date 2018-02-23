@@ -1,5 +1,5 @@
 //=================================================================================================
-//                    Copyright (C) 2017 Olivier Mallet - All Rights Reserved                      
+//                    Copyright (C) 2017 Olivier Mallet - All Rights Reserved
 //=================================================================================================
 
 #ifndef CHROMOSOME_HPP
@@ -19,12 +19,12 @@ public:
    Chromosome(const GeneticAlgorithm<T>& ga);
    // copy constructor
    Chromosome(const Chromosome<T>& rhs);
-   // create new chromosome 
+   // create new chromosome
    void create();
    // initialize chromosome
    void initialize();
-   // evaluate chromosome 
-   void evaluate(); 
+   // evaluate chromosome
+   void evaluate();
    // reset chromosome
    void reset();
    // set or replace kth gene by a new one
@@ -33,7 +33,7 @@ public:
    void initGene(int k, T value);
    // add bit to chromosome
    void addBit(char bit);
-   // initialize or replace an existing chromosome bit   
+   // initialize or replace an existing chromosome bit
    void setBit(char bit, int pos);
    // flip an existing chromosome bit
    void flipBit(int pos);
@@ -81,7 +81,7 @@ private:
 
 // constructor
 template <typename T>
-Chromosome<T>::Chromosome(const GeneticAlgorithm<T>& ga) 
+Chromosome<T>::Chromosome(const GeneticAlgorithm<T>& ga)
 {
    param.resize(ga.nbparam);
    ptr = &ga;
@@ -93,7 +93,7 @@ Chromosome<T>::Chromosome(const GeneticAlgorithm<T>& ga)
 
 // copy constructor
 template <typename T>
-Chromosome<T>::Chromosome(const Chromosome<T>& rhs) 
+Chromosome<T>::Chromosome(const Chromosome<T>& rhs)
 {
    param = rhs.param;
    result = rhs.result;
@@ -118,7 +118,7 @@ inline void Chromosome<T>::create()
       // encoding parameter random value
       std::string str = x->encode();
       chr.append(str);
-   }  
+   }
 }
 
 /*-------------------------------------------------------------------------------------------------*/
@@ -134,21 +134,22 @@ inline void Chromosome<T>::initialize()
       // encoding parameter initial value
       std::string str = x->encode(ptr->initialSet[i++]);
       chr.append(str);
-   }      
+   }
 }
 
 /*-------------------------------------------------------------------------------------------------*/
 
 // evaluate chromosome fitness
 template <typename T>
-inline void Chromosome<T>::evaluate() 
+inline void Chromosome<T>::evaluate()
 {
    int i(0);
    for (const auto& x : ptr->param) {
       // decoding chromosome: converting chromosome string into a real value
-      param[i] = x->decode(chr.substr(ptr->idx[i++], x->size()));
-   } 
-   // computing objective result(s) 
+      param[i] = x->decode(chr.substr(ptr->idx[i], x->size()));
+      i++;
+   }
+   // computing objective result(s)
    result = ptr->Objective(param);
    // computing sum of all results (in case there is not only one objective functions)
    total = std::accumulate(result.begin(), result.end(), 0.0);
@@ -221,10 +222,10 @@ inline void Chromosome<T>::addBit(char bit)
 
 /*-------------------------------------------------------------------------------------------------*/
 
-// initialize or replace an existing chromosome bit   
+// initialize or replace an existing chromosome bit
 template <typename T>
 inline void Chromosome<T>::setBit(char bit, int pos)
-{  
+{
    #ifndef NDEBUG
    if (pos >= chrsize) {
       throw std::out_of_range("Error: in galgo::Chromosome<T>::replaceBit(char, int), second argument cannot be equal or greater than chromosome size.");
@@ -240,7 +241,7 @@ inline void Chromosome<T>::setBit(char bit, int pos)
 }
 
 /*-------------------------------------------------------------------------------------------------*/
-      
+
 // flip an existing chromosome bit
 template <typename T>
 inline void Chromosome<T>::flipBit(int pos)
@@ -350,7 +351,7 @@ inline int Chromosome<T>::size() const
 
 /*-------------------------------------------------------------------------------------------------*/
 
-// return mutation rate 
+// return mutation rate
 template <typename T>
 inline T Chromosome<T>::mutrate() const
 {
