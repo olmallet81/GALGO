@@ -192,6 +192,18 @@ $ g++ -fopenmp -std=c++11 -O3 -Wall example.cpp -o run
 ```
 GALGO is set to use the maximum number of threads available by default when OpenMP is enabled, you can reduce this value inside the header Galgo.hpp.
 
+### Compiling and Running with Docker
+
+A Dockerfile is included to compile and run the example code. To use this, first install [Docker](https://docs.docker.com/install/) then clone the repository and from within the project directory, build the image:
+```
+docker build -t galgo .
+```
+(Alternatively, the image can be built directly from the remote GitHub repository without the need to clone it first i.e.: `docker build -t galgo https://github.com/bdevans/GALGO.git`.)
+Finally run the program:
+```
+docker run -it --rm --name galgo galgo
+```
+
 ## Ouput
 
 ```
