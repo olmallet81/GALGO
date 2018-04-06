@@ -100,7 +100,7 @@ With:
    - *Selection* = for setting the selection method (set to RWS by default)
    - *CrossOver* = for setting the cross-over method (set to P1XO by default)
    - *Mutation* = for setting the mutation method (set to SPM by default)
-   - *Adaptation* = for setting the adaptation to constaint(s) (optional)
+   - *Adaptation* = for setting the adaptation to contraint(s) (optional)
    - *Constraint* = for setting the contraint(s) function (optional)
   
 ### Member variables (public)
