@@ -48,7 +48,8 @@ public:
    T mutrate = .05;   // mutation rate   
    T SP = 1.5;        // selective pressure for RSP selection method 
    T tolerance = 0.0; // terminal condition (inactive if equal to zero)
-                 
+   T targetEnergy  = std::numeric_limits<T>::min();
+  
    int elitpop = 1;   // elit population size
    int matsize;       // mating pool size, set to popsize by default
    int tntsize = 10;  // tournament size
@@ -208,13 +209,15 @@ void GeneticAlgorithm<T>::run()
       // outputting results
       if (output) print();
       // checking convergence
-      if (tolerance != 0.0) {
+      if (tolerance != 0.0 nogen > 1) {
          if (fabs(bestResult - prevBestResult) < fabs(tolerance)) {
             break;
          }
          prevBestResult = bestResult;
       }
-   } 
+      // Checking energy
+      if(fabs(bestResult) <= targetEnergy) break;
+   }
 
    // outputting contraint value
    if (Constraint != nullptr) {
