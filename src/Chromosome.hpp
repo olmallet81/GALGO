@@ -151,8 +151,14 @@ inline void Chromosome<T>::evaluate()
    } 
    // computing objective result(s) 
    result = ptr->Objective(param);
+  
+   //if(std::isnan(result[0])) abort();
+  
    // computing sum of all results (in case there is not only one objective functions)
    total = std::accumulate(result.begin(), result.end(), 0.0);
+  
+   //if(std::isnan(total)) abort();
+
    // initializing fitness to this total
    fitness = total;
 }
