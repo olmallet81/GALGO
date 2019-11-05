@@ -23,6 +23,8 @@ void RWS(galgo::Population<T>& x)
    // computing fitness sum
    T fitsum = x.getSumFitness();
 
+   //if(std::isnan(fitsum)) abort();
+
    // selecting mating population
    for (int i = 0, end = x.matsize(); i < end; ++i) {
       // generating a random fitness sum in [0,fitsum)
