@@ -1,3 +1,13 @@
+# UPDATE FROM ORIGINAL
+
+I make some upgrade:
+
+* fix fix the issue #10
+* add an gitignore file
+* add a makefile to install the library
+* add as a condition to stop a target "energy"
+
+
 # GALGO-2.0
 Genetic Algorithm in C++ with template metaprogramming and abstraction for constrained optimization.
 
