@@ -259,7 +259,7 @@ void GeneticAlgorithm<T>::print() const
    std::vector<T> bestResult = pop(0)->getResult();
 
    if (nogen % genstep == 0) {
-      std::cout << " Generation = " << std::setw(std::to_string(nbgen).size()) << nogen << " |";
+      std::cout << " Generation = " << std::setw((int)std::to_string(nbgen).size()) << nogen << " |";
       for (int i = 0; i < nbparam; ++i) {
 	      std::cout << " X";
          if (nbparam > 1) {
