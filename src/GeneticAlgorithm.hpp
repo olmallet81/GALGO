@@ -209,7 +209,8 @@ void GeneticAlgorithm<T>::run()
       // outputting results
       if (output) print();
       // checking convergence
-      if (tolerance != 0.0 nogen > 1) {
+      // NOTE: non so perche prima avemo messo  && nogen > 1
+      if (tolerance != 0.0) {
          if (fabs(bestResult - prevBestResult) < fabs(tolerance)) {
             break;
          }
